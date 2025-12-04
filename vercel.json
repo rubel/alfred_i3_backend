@@ -2,19 +2,21 @@
   "version": 2,
   "builds": [
     {
-      "src": "api/token.js",
+      "src": "api/**/*.js",
       "use": "@vercel/node"
     }
   ],
   "routes": [
     {
-      "src": "/api/token",
-      "methods": ["GET", "POST", "OPTIONS"],
-      "dest": "/api/token"
+      "src": "/",
+      "dest": "/api/index.js"
     },
     {
-      "src": "/(.*)",
-      "dest": "/api/token"
+      "src": "/api/token",
+      "dest": "/api/token.js"
     }
-  ]
+  ],
+  "env": {
+    "NODE_ENV": "production"
+  }
 }

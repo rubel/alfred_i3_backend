@@ -33,7 +33,7 @@ app.get("/forge-token", async (req, res) => {
       token_type: response.data.token_type
     });
   } catch (err) {
-    console.error("Forge Token Error:", err.response?.data || err.message);
+    console.error("Forge Token Error: ", err.response?.data || err.message);
     res.status(500).json({ error: "Failed to retrieve token" });
   }
 });

@@ -1,5 +1,5 @@
 {
   "routes": [
-    { "src": "/forge-token", "dest": "/api/index.js" }
+    { "src": "/forge-token", "dest": "/api/forge-token.js" }
   ]
 }

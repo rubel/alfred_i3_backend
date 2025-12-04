@@ -1,8 +1,8 @@
 import express from "express";
 import axios from "axios";
-import serverlessExpress from "@vendia/serverless-express";
 
 const app = express();
+app.use(express.json());
 
 app.get("/", async (req, res) => {
   const base64Auth = process.env.FORGE_BASE64;
@@ -29,8 +29,9 @@ app.get("/", async (req, res) => {
       token_type: response.data.token_type,
     });
   } catch (err) {
+    console.error(err.response?.data || err.message);
     res.status(500).json({ error: "Token request failed" });
   }
 });
 
-export default serverlessExpress({ app });
+export default app;

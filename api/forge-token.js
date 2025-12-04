@@ -4,9 +4,13 @@ import axios from "axios";
 const app = express();
 app.use(express.json());
 
+// Route for Forge token
 app.get("/", async (req, res) => {
   const base64Auth = process.env.FORGE_BASE64;
-  if (!base64Auth) return res.status(500).json({ error: "Missing FORGE_BASE64" });
+
+  if (!base64Auth) {
+    return res.status(500).json({ error: "FORGE_BASE64 environment variable is missing" });
+  }
 
   try {
     const response = await axios.post(
@@ -29,8 +33,8 @@ app.get("/", async (req, res) => {
       token_type: response.data.token_type,
     });
   } catch (err) {
-    console.error(err.response?.data || err.message);
-    res.status(500).json({ error: "Token request failed" });
+    console.error("Forge token request error:", err.response?.data || err.message);
+    res.status(500).json({ error: "Failed to retrieve token" });
   }
 });
 

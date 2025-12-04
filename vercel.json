@@ -1,0 +1,20 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "api/token.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/token",
+      "methods": ["GET", "POST", "OPTIONS"],
+      "dest": "/api/token"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/api/token"
+    }
+  ]
+}
